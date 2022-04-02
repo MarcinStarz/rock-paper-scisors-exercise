@@ -9,10 +9,10 @@ function computerPlay() {
 function playerPlay() {
     let weaponsPlayer = ["rock", "paper", "scissors"];
     let weaponPick = prompt('Type in your weapon (rock/paper/scissors): ', '').toLowerCase().trim();
-    if (weaponsPlayer.includes(weaponPick)) {
+    while (!weaponsPlayer.includes(weaponPick)) {
+        weaponPick = prompt("Wrong value! Try again:", '').toLowerCase().trim();
+    } if (weaponsPlayer.includes(weaponPick)) {
         return weaponPick;
-    } else {
-        return weaponPick = prompt("Wrong value! Try again:", '');
     }
 }
 
