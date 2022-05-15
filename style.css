@@ -1,0 +1,49 @@
+body {
+    background-color: #d3a373;
+    font-family: 'Koulen', cursive;
+    color: #fefadf;
+}
+#winnerContainer {
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+#counterContainer {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.vs {
+    align-self: center;
+    font-size: 3rem;
+}
+
+.youScore, .computerScore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.youContainer, .computerContainer {
+    display: flex;
+    gap: 3rem;
+}
+.choicePC, .choicePlayer{
+    width: 12rem;
+}
+/* buttons */
+#buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3rem;
+}
+
+input.button {
+    width: 5rem;
+}
+/* buttons */
