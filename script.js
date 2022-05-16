@@ -1,12 +1,36 @@
 const choicePlayer = document.querySelector('.youChoice');
 const choicePC = document.querySelector('.pcChoice');
 
+// Create icons with chosen r/p/s 
 const divPlayer = document.createElement('img');
 divPlayer.classList.add('choicePlayer');
 
 const divPC = document.createElement('img');
 divPC.classList.add('choicePC');
 
+// Selector for player counter below
+const youScore = document.querySelector('.youScore')
+// Create score counters for player
+const you = document.createElement('span');
+you.classList.add('you');
+you.textContent = 'YOU';
+
+const playerScore = document.createElement('span');
+playerScore.classList.add('playerScore');
+playerScore.textContent = '0';
+
+// Create score counters for PC
+const pc = document.createElement('span');
+you.classList.add('pc');
+
+const pcScore = document.createElement('span');
+you.classList.add('pcScore');
+
+// VS span
+const vs = document.createElement('span');
+you.classList.add('vs');
+
+// Winner container
 const winnerContainer = document.querySelector('#winnerContainer')
 const winnerLoser = document.createElement('span');
 
@@ -15,9 +39,13 @@ const pcPoints = document.querySelector('.pcScore')
 let counterPlayer = 0;
 let counterPC = 0;
 
-//Player choosing r/p/s
+
+// Player choosing r/p/s
 const btnRock = document.getElementsByClassName('rock')[0];
 btnRock.addEventListener('click', function() {
+    youScore.appendChild(you);
+    youScore.appendChild(playerScore);
+    
     if (counterPlayer == 5 || counterPC == 5) {
         return;
     }
@@ -128,19 +156,16 @@ function playRound(playerSelection, computerSelection) {
             playerPoints.textContent = counterPlayer.toString();
         }
     }
-  }
+}
 //Function summarizing who is the winner
-  function gameWinner() {
-      if (counterPC == 5 && counterPlayer == 5 ) {
+function gameWinner() {
+    if (counterPC == 5 && counterPlayer == 5 ) {
         winnerLoser.textContent = "GAME OVER. IT'S A DRAW.";
         winnerContainer.appendChild(winnerLoser);
-      } else if (counterPlayer > counterPC && counterPlayer == 5) {
+    } else if (counterPlayer > counterPC && counterPlayer == 5) {
         winnerLoser.textContent = "GAME OVER. YOU WON!";
         winnerContainer.appendChild(winnerLoser);
-      } else if (counterPlayer < counterPC && counterPC == 5)
-        winnerLoser.textContent = "GAME OVER. YOU LOST.";
-        winnerContainer.appendChild(winnerLoser);
-  }
-
-
-
+    } else if (counterPlayer < counterPC && counterPC == 5)
+    winnerLoser.textContent = "GAME OVER. YOU LOST.";
+    winnerContainer.appendChild(winnerLoser);
+}
