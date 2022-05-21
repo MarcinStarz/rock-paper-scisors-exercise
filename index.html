@@ -16,19 +16,15 @@
     <div id="counterContainer">
         <div class="youContainer">
             <div class="youScore">
-                <!-- <span class="you">YOU</span> -->
-                <!-- <span class="playerScore">0</span> -->
             </div>
             <div class="youChoice"></div>
         </div>
 
-        <span class="vs">VS</span>
+        <span class="vs"></span>
 
         <div class="computerContainer">
             <div class="pcChoice"></div>
             <div class="computerScore">
-                <span class="pc">PC</span>
-                <span class="pcScore">0</span>
             </div>
         </div>
     </div>
@@ -38,8 +34,11 @@
         <input type="image" src="icons/png/paper.png" class="paper button">
         <input type="image" src="icons/png/scissors.png" class="scissors button">
     </div>
-
-    <script src="script.js"></script>
+   <div id="restartContainer">
+        <input type="button" value="RESTART" onClick="window.location.reload();" id="restart">
+        <script src="script.js"></script>
+   </div>
+    
 </body>
 
 </html>

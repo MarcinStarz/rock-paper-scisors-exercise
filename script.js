@@ -19,32 +19,41 @@ const playerScore = document.createElement('span');
 playerScore.classList.add('playerScore');
 playerScore.textContent = '0';
 
+// Selector for computer counter below
+const computerScore = document.querySelector('.computerScore')
 // Create score counters for PC
 const pc = document.createElement('span');
-you.classList.add('pc');
+pc.classList.add('pc');
+pc.textContent = 'PC';
+
 
 const pcScore = document.createElement('span');
-you.classList.add('pcScore');
+pcScore.classList.add('pcScore');
+pcScore.textContent = '0';
 
 // VS span
-const vs = document.createElement('span');
-you.classList.add('vs');
+const vs = document.querySelector('.vs');
 
 // Winner container
 const winnerContainer = document.querySelector('#winnerContainer')
 const winnerLoser = document.createElement('span');
 
-const playerPoints = document.querySelector('.playerScore')
-const pcPoints = document.querySelector('.pcScore')
 let counterPlayer = 0;
 let counterPC = 0;
+
+let hideCounter = document.querySelector('#counterContainer').style.display = 'none';
 
 
 // Player choosing r/p/s
 const btnRock = document.getElementsByClassName('rock')[0];
 btnRock.addEventListener('click', function() {
+    hideCounter = document.querySelector('#counterContainer').style.display = '';
     youScore.appendChild(you);
     youScore.appendChild(playerScore);
+    computerScore.appendChild(pc);
+    computerScore.appendChild(pcScore);
+    vs.textContent = 'VS';
+
     
     if (counterPlayer == 5 || counterPC == 5) {
         return;
@@ -59,10 +68,18 @@ btnRock.addEventListener('click', function() {
     
     playRound(playerSelection, computerSelection);
     gameWinner();
+    removeThem();
 });
 //Buttons r/p/s
 const btnPaper = document.getElementsByClassName('paper')[0];
 btnPaper.addEventListener('click', function() {
+    hideCounter = document.querySelector('#counterContainer').style.display = '';
+    youScore.appendChild(you);
+    youScore.appendChild(playerScore);
+    computerScore.appendChild(pc);
+    computerScore.appendChild(pcScore);
+    vs.textContent = 'VS';
+
     if (counterPlayer == 5 || counterPC == 5) {
         return;
     }
@@ -76,10 +93,18 @@ btnPaper.addEventListener('click', function() {
     
     playRound(playerSelection, computerSelection);
     gameWinner();
+    removeThem();
 });
 
 const btnScissors = document.getElementsByClassName('scissors')[0];
 btnScissors.addEventListener('click', function() {
+    hideCounter = document.querySelector('#counterContainer').style.display = '';
+    youScore.appendChild(you);
+    youScore.appendChild(playerScore);
+    computerScore.appendChild(pc);
+    computerScore.appendChild(pcScore);
+    vs.textContent = 'VS';
+
     if (counterPlayer == 5 || counterPC == 5) {
         return;
     }
@@ -93,6 +118,7 @@ btnScissors.addEventListener('click', function() {
     
     playRound(playerSelection, computerSelection);
     gameWinner();
+    removeThem();
 });
 
 //Computer randomly choosing RPS
@@ -121,11 +147,13 @@ function playRound(playerSelection, computerSelection) {
         winnerContainer.appendChild(winnerLoser);
     } else if (playerSelection === "rock") {
         if (computerSelection === "paper") {
+            const pcPoints = document.querySelector('.pcScore')
             winnerLoser.textContent = 'COMPUTER WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPC++;
             pcPoints.textContent = counterPC.toString();
         } else {
+            const playerPoints = document.querySelector('.playerScore')
             winnerLoser.textContent = 'YOU WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPlayer++;
@@ -133,11 +161,13 @@ function playRound(playerSelection, computerSelection) {
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "scissors") {
+            const pcPoints = document.querySelector('.pcScore')
             winnerLoser.textContent = 'COMPUTER WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPC++;
             pcPoints.textContent = counterPC.toString();
         } else {
+            const playerPoints = document.querySelector('.playerScore')
             winnerLoser.textContent = 'YOU WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPlayer++;
@@ -145,11 +175,13 @@ function playRound(playerSelection, computerSelection) {
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
+            const pcPoints = document.querySelector('.pcScore')
             winnerLoser.textContent = 'COMPUTER WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPC++;
             pcPoints.textContent = counterPC.toString();
         } else {
+            const playerPoints = document.querySelector('.playerScore')
             winnerLoser.textContent = 'YOU WON!';
             winnerContainer.appendChild(winnerLoser);
             counterPlayer++;
@@ -159,7 +191,7 @@ function playRound(playerSelection, computerSelection) {
 }
 //Function summarizing who is the winner
 function gameWinner() {
-    if (counterPC == 5 && counterPlayer == 5 ) {
+    if (counterPC == 5 && counterPlayer == 5) {
         winnerLoser.textContent = "GAME OVER. IT'S A DRAW.";
         winnerContainer.appendChild(winnerLoser);
     } else if (counterPlayer > counterPC && counterPlayer == 5) {
@@ -169,3 +201,15 @@ function gameWinner() {
     winnerLoser.textContent = "GAME OVER. YOU LOST.";
     winnerContainer.appendChild(winnerLoser);
 }
+
+// RESTART THE GAME
+let restartButton = document.querySelector('#restart').style.display = 'none';
+let parentButtons = document.querySelector('#buttons')
+function removeThem() {
+    if (counterPC == 5 || counterPlayer == 5) {
+        parentButtons.remove();
+        restartButton = document.querySelector('#restart').style.display = '';
+    } else return;
+};
+
+
